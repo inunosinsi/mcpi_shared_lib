@@ -6,11 +6,11 @@ if(NOT MODS_BEING_BUILD STREQUAL "all")
 endif()
 
 # Start Project
-project(mcpi_shared_lib)
+project(kuroobi)
 
 # Include SDK
 include("$ENV{HOME}/.minecraft-pi/sdk/lib/minecraft-pi-reborn-client/sdk/sdk.cmake")
 
 # Build the jetpack
-add_library(born SHARED src/b.cpp)
-target_link_libraries(born mods-headers reborn-patch symbols misc mods-headers media-layer-core)
+add_library(kuroobi SHARED src/kuroobi.cpp)
+target_link_libraries(kuroobi mods-headers reborn-patch symbols misc mods-headers media-layer-core)
