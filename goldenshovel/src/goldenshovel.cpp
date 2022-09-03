@@ -14,6 +14,7 @@ unsigned char *make_golden_shovel(){
     unsigned char *item = (unsigned char *) ::operator new(0x34); // Tool_SIZE
     ALLOC_CHECK(item);
     (*ToolItem)(item, 148, Material_iron, 2, 1);
+    
     // Set VTable
     unsigned char *vtable = *(unsigned char **) item;
 

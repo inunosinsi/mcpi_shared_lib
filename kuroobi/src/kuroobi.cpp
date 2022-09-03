@@ -1,7 +1,6 @@
 #include <libreborn/libreborn.h>
 #include <symbols/minecraft.h>
 #include <mods/misc/misc.h>
-#include <stdio.h>
 
 typedef ItemInstance *(*Player_getArmor_t)(unsigned char *player, int32_t slot);
 static Player_getArmor_t Player_getArmor = (Player_getArmor_t) 0x8fda4;
@@ -20,7 +19,7 @@ static void mcpi_callback(unsigned char *minecraft){
     player = *(unsigned char **) (minecraft + Minecraft_player_property_offset);
     level = *(unsigned char **) (minecraft + Minecraft_level_property_offset);
     if (player != NULL){
-        // Uses texture changing to have the jetpack texture work.
+        // Uses texture changing to have the kuroobi texture work.
         ItemInstance *item = Player_getArmor(player, 1);
         if (item == NULL) return;
         if (item->id == 404){
@@ -64,15 +63,14 @@ static void Item_initItems_injection(__attribute__((unused)) unsigned char *null
 static void Inventory_setupDefault_FillingContainer_addItem_call_injection(unsigned char *filling_container) {
     ItemInstance *kuroobi_instance = new ItemInstance;
     ALLOC_CHECK(kuroobi_instance);
-    b_instance->count = 255;
-    b_instance->auxiliary = 0;
-    b_instance->id = 404;
-    (*FillingContainer_addItem)(filling_container, b_instance);
+    kuroobi_instance->count = 255;
+    kuroobi_instance->auxiliary = 0;
+    kuroobi_instance->id = 404;
+    (*FillingContainer_addItem)(filling_container, kuroobi_instance);
 }
 
 __attribute__((constructor)) static void init() {
     misc_run_on_update(mcpi_callback);
     misc_run_on_creative_inventory_setup(Inventory_setupDefault_FillingContainer_addItem_call_injection);
     misc_run_on_items_setup(Item_initItems_injection);
-    //printf("include libb.so ok!");
 }
