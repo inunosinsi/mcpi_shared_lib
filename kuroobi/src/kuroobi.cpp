@@ -60,10 +60,10 @@ static void Item_initItems_injection(__attribute__((unused)) unsigned char *null
     kuroobi = make_kuroobi();
 }
 
-// Add jetpack to creative inventory
+// Add kuroobi to creative inventory
 static void Inventory_setupDefault_FillingContainer_addItem_call_injection(unsigned char *filling_container) {
-    ItemInstance *b_instance = new ItemInstance;
-    ALLOC_CHECK(b_instance);
+    ItemInstance *kuroobi_instance = new ItemInstance;
+    ALLOC_CHECK(kuroobi_instance);
     b_instance->count = 255;
     b_instance->auxiliary = 0;
     b_instance->id = 404;
