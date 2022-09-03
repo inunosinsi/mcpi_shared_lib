@@ -11,7 +11,7 @@ static ArmorItem_t ArmorItem = (ArmorItem_t) 0x9362c;
 // Custom golden shovel item
 unsigned char *gs;
 unsigned char *make_golden_shovel(){
-    // gold scoop
+    // golden shovel
     unsigned char *item = (unsigned char *) ::operator new(0x34); // ARMOR_SIZE
     ALLOC_CHECK(item);
     (*ArmorItem)(item, 148, Material_iron, 2, 1);
@@ -24,7 +24,7 @@ unsigned char *make_golden_shovel(){
 
     // Setup
     (*Item_setIcon)(item, 6, 6);
-    (*Item_setDescriptionId)(item, "gold scoop");
+    (*Item_setDescriptionId)(item, "golden shovel");
     *(int32_t *) (item + Item_is_stacked_by_data_property_offset) = 1;
     *(int32_t *) (item + Item_category_property_offset) = 2;
     *(int32_t *) (item + Item_max_damage_property_offset) = 250;
@@ -42,7 +42,7 @@ static void Inventory_setupDefault_FillingContainer_addGSItem_call_injection(uns
     ItemInstance *gs_instance = new ItemInstance;
     ALLOC_CHECK(gs_instance);
     gs_instance->count = 255;
-    gs_instance->auxiliary = 0;
+    gs_instance->auxiliary = 0; //auxiliary:補助
     gs_instance->id = 404;
     (*FillingContainer_addItem)(filling_container, gs_instance);
 }
