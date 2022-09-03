@@ -37,7 +37,7 @@ static void Item_initGSItems_injection(__attribute__((unused)) unsigned char *nu
     gs = make_golden_shovel();
 }
 
-// Add gold scoop to creative inventory
+// Add golden shovel to creative inventory
 static void Inventory_setupDefault_FillingContainer_addGSItem_call_injection(unsigned char *filling_container) {
     ItemInstance *gs_instance = new ItemInstance;
     ALLOC_CHECK(gs_instance);
