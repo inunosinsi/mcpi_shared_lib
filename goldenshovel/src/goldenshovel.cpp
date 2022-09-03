@@ -1,20 +1,19 @@
 #include <libreborn/libreborn.h>
 #include <symbols/minecraft.h>
 #include <mods/misc/misc.h>
-#include <stdio.h>
 
 unsigned char **Material_iron = (unsigned char **) 0x17a7a8; // Material
 
-typedef unsigned char *(*ArmorItem_t)(unsigned char *ArmorItem, int id, unsigned char **mat, int param_3, int param_4);
-static ArmorItem_t ArmorItem = (ArmorItem_t) 0x9362c;
+typedef unsigned char *(*ToolItem_t)(unsigned char *ToolItem, int id, unsigned char **mat, int param_3, int param_4);
+static ToolItem_t ToolItem = (ToolItem_t) 0x9362c;
 
 // Custom golden shovel item
 unsigned char *gs;
 unsigned char *make_golden_shovel(){
     // golden shovel
-    unsigned char *item = (unsigned char *) ::operator new(0x34); // ARMOR_SIZE
+    unsigned char *item = (unsigned char *) ::operator new(0x34); // Tool_SIZE
     ALLOC_CHECK(item);
-    (*ArmorItem)(item, 148, Material_iron, 2, 1);
+    (*ToolItem)(item, 148, Material_iron, 2, 1);
     // Set VTable
     unsigned char *vtable = *(unsigned char **) item;
 
