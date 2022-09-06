@@ -65,7 +65,7 @@ static void Inventory_setupDefault_FillingContainer_addItem_call_injection(unsig
     ALLOC_CHECK(red_instance);
     red_instance->count = 255;
     red_instance->auxiliary = 0;
-    red_instance->id = 321;
+    red_instance->id = 404;
     (*FillingContainer_addItem)(filling_container, red_instance);
 }
 
