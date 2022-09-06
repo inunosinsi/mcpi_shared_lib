@@ -31,8 +31,8 @@ static void mcpi_callback(unsigned char *minecraft){
 }
 
 // Custom red item
-unsigned char *red_body;
-unsigned char *make_red_body(){
+unsigned char *red_chest;
+unsigned char *make_red_chest(){
     // red
     unsigned char *item = (unsigned char *) ::operator new(0x34); // ARMOR_SIZE
     ALLOC_CHECK(item);
@@ -46,7 +46,7 @@ unsigned char *make_red_body(){
 
     // Setup
     (*Item_setIcon)(item, 4, 10);
-    (*Item_setDescriptionId)(item, "red_body");
+    (*Item_setDescriptionId)(item, "red_chest");
     *(int32_t *) (item + Item_is_stacked_by_data_property_offset) = 1;
     *(int32_t *) (item + Item_category_property_offset) = 2;
     *(int32_t *) (item + Item_max_damage_property_offset) = 250;
@@ -56,7 +56,7 @@ unsigned char *make_red_body(){
 }
 
 static void Item_initItems_injection(__attribute__((unused)) unsigned char *null) {
-    red_body = make_red_body();
+    red_chest = make_red_chest();
 }
 
 // Add redarmor to creative inventory
@@ -65,7 +65,7 @@ static void Inventory_setupDefault_FillingContainer_addItem_call_injection(unsig
     ALLOC_CHECK(red_instance);
     red_instance->count = 255;
     red_instance->auxiliary = 0;
-    red_instance->id = 404;
+    red_instance->id = 321;
     (*FillingContainer_addItem)(filling_container, red_instance);
 }
 
